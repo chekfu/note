@@ -36,7 +36,7 @@ class App:
         filemenu.add_command(label="Open", command=self.Open)
         filemenu.add_command(label="Save", command=self.Save)
 
-        #filemenu.add_command(label="Rename", command=self.Rename)
+        #filemenu.add_command(label="Rename", command=self.Rename)   #to do
         filemenu.add_separator()
         filemenu.add_command(label="Exit", command=self.Exit)
         menubar.add_cascade(label="File",  menu=filemenu)
@@ -46,11 +46,18 @@ class App:
         menubar.add_cascade(label="Font", menu=fontMenu)
         searchMenu= tk.Menu(menubar, tearoff= 0)
         #searchMenu.add_command(label="Find", command = self.search())
-        menubar.add_cascade(label="Search", menu=searchMenu )
+        menubar.add_cascade(label="Search", menu=searchMenu)
+        helpMenu=tk.Menu(menubar, tearoff=0)
+        helpMenu.add_command(label="??", command=self.Help)
+        menubar.add_cascade(label="Help", menu=helpMenu)
 
         self.win.config(menu=menubar)
 
         self.win.mainloop()
+
+    def Help(self):
+        messagebox.showinfo("Title", "a Tk MessageBox")
+
 
     def IncreaseFont(self):
         size = self.customFont['size']
