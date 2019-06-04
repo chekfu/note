@@ -15,6 +15,7 @@ class App:
             family="Helvetica", size=14
         )
         self.filename=filename
+        self.query = tk.StringVar()
 
         frame1 = tk.Frame(
             master=self.win,
@@ -47,16 +48,36 @@ class App:
         searchMenu= tk.Menu(menubar, tearoff= 0)
         #searchMenu.add_command(label="Find", command = self.search())
         menubar.add_cascade(label="Search", menu=searchMenu)
+        searchMenu.add_command(label="To count", command=self.to_count)
         helpMenu=tk.Menu(menubar, tearoff=0)
-        helpMenu.add_command(label="??", command=self.Help)
+        helpMenu.add_command(label="Info", command=self.Help)
         menubar.add_cascade(label="Help", menu=helpMenu)
 
         self.win.config(menu=menubar)
 
         self.win.mainloop()
 
+    def to_count(self):
+        self.result=tk.Toplevel()
+        self.result.title('Count')
+        self.result.geometry('400x150')
+        tk.Entry(self.result, textvariable=self.query).pack()
+        tk.Button(self.result, text='OK', command=self.DestroyResult).pack()
+
+    def DestroyResult(self):
+        self.result.destroy()
+        unijetiTekst = self.query.get()
+        messageResult = tk.Toplevel()
+        messageResult.title("Rezultat")
+        tk.Label(messageResult, text="U textu se nalazi 0 puta {}".format(unijetiTekst))
+        tk.Button(messageResult, text="OK", command=messageResult.destroy).pack()
+
     def Help(self):
-        messagebox.showinfo("Title", "a Tk MessageBox")
+        messagebox.showinfo("Info",
+                            "This is Free and Open Source Software. "
+                            "Development is open to new talent and new ideas, "
+                            "and our software is tested and used daily by a "
+                            "large and devoted user community.")
 
 
     def IncreaseFont(self):
