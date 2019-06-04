@@ -37,7 +37,7 @@ class App:
         filemenu.add_command(label="Open", command=self.Open)
         filemenu.add_command(label="Save", command=self.Save)
 
-        #filemenu.add_command(label="Rename", command=self.Rename)   #to do
+        filemenu.add_command(label="Rename", command=self.Rename)   #to do
         filemenu.add_separator()
         filemenu.add_command(label="Exit", command=self.Exit)
         menubar.add_cascade(label="File",  menu=filemenu)
@@ -56,6 +56,18 @@ class App:
         self.win.config(menu=menubar)
 
         self.win.mainloop()
+
+
+    def Rename(self):
+        if self.filename:
+            pathToDir = os.path.dirname(self.filename)
+            f = filedialog.asksaveasfile(mode='w', defaultextension=".txt", initialdir=pathToDir)
+            if f:
+                print(f)
+                shutil.move(self.filename, f.name)
+                self.filename = f.name
+        else:
+            self.Save()
 
     def to_count(self):
         self.result=tk.Toplevel()
