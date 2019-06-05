@@ -46,7 +46,7 @@ class App:
         fontMenu.add_command(label="DecreaseFont", command=self.DecreaseFont)
         menubar.add_cascade(label="Font", menu=fontMenu)
         searchMenu= tk.Menu(menubar, tearoff= 0)
-        #searchMenu.add_command(label="Find", command = self.search())
+        #searchMenu.add_command(label="Find", command = self.search)
         menubar.add_cascade(label="Search", menu=searchMenu)
         searchMenu.add_command(label="To count", command=self.to_count)
         helpMenu=tk.Menu(menubar, tearoff=0)
@@ -56,7 +56,6 @@ class App:
         self.win.config(menu=menubar)
 
         self.win.mainloop()
-
 
     def Rename(self):
         if self.filename:
